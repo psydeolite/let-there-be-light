@@ -9,6 +9,8 @@ class Sorter {
     }
   }
   
+  ArrayList<String> results=new ArrayList<String>();
+  
   void setup() {
     size(5000,5000);
     background(0);
@@ -22,7 +24,12 @@ class Sorter {
     return s;
   }
   
+  void clearResults() {
+    results=new ArrayList<String>();
+  }
+  
   void selectionSort() {
+    clearResults();
     int minInd;
     for (int i=0; i<toSort.size();i++) {
       minInd=i;
@@ -33,23 +40,29 @@ class Sorter {
       }  
       int temp=toSort.get(minInd);
       toSort.set(minInd,toSort.get(i));
+      results.add(toString());
       toSort.set(i,temp);
+      results.add(toString());
     }
   }
-  
+      
   void insertionSort() {
+    clearResults();
     int i,j;
     for (i=1;i<toSort.size();i++) {
       int temp=toSort.get(i);
       for (j=i-1;j>=0 && temp<toSort.get(j);j--) {
         toSort.set(j+1,toSort.get(j));
+        results.add(toString());
       }
       toSort.set(j+1,temp);
+      results.add(toString());
     }
   }
   
   //needs work
   ArrayList<Integer> mergeSorter() {
+    clearResults();
     return mergeSort(toSort);
   }
   

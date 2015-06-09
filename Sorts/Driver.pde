@@ -1,9 +1,12 @@
 Sorter s=new Sorter(15);
-    void draw() {
-      print("test");
-      print(s.toString());
-      s.qsort();
-      print(s.toString());
+    void setup() {
+      println("test");
+      println(s.toString());
+      //s.qsort();
+      s.mergeSorter();
+      //s.selectionSort();
+      //s.insertionSort();
+      println(s.toString());
     }
 
  
