@@ -16,9 +16,9 @@ class Sorter {
     background(0);
   }
   
-  String toString() {
+  String toString(int[] array) {
     String s="";
-    for (int el:toSort) {
+    for (int el:array) {
       s+=el+",";
     }
     return s;
@@ -40,9 +40,9 @@ class Sorter {
       }  
       int temp=toSort.get(minInd);
       toSort.set(minInd,toSort.get(i));
-      results.add(toString());
+      results.add(toString(toSort));
       toSort.set(i,temp);
-      results.add(toString());
+      results.add(toString(toSort));
     }
   }
       
@@ -53,17 +53,17 @@ class Sorter {
       int temp=toSort.get(i);
       for (j=i-1;j>=0 && temp<toSort.get(j);j--) {
         toSort.set(j+1,toSort.get(j));
-        results.add(toString());
+        results.add(toString(toSort));
       }
       toSort.set(j+1,temp);
-      results.add(toString());
+      results.add(toString(toSort));
     }
   }
   
   //needs work
-  ArrayList<Integer> mergeSorter() {
+  void mergeSorter() {
     clearResults();
-    return mergeSort(toSort);
+    toSort=mergeSort(toSort);
   }
   
   ArrayList<Integer> mergeSort(ArrayList<Integer> ar) {
@@ -78,31 +78,25 @@ class Sorter {
       for (int i=ar.size()/2;i<ar.size();i++) {
         c.add(ar.get(i)); 
       }
-      ArrayList<Integer> r1=mergeSort(b);
-      ArrayList<Integer> r2=mergeSort(c);
-      return merge(b,c);
+      results.add(toString(merge(mergeSort(b),mergeSort(c))));
+      return merge(mergeSort(b),mergeSort(c));
     }
   }
   
   ArrayList<Integer> merge(ArrayList<Integer> a,ArrayList<Integer> b) {
     ArrayList<Integer> r=new ArrayList<Integer>();
-    int ia=0;int ib=0;
-    while (ia<a.size() && ib<b.size()) {
-      if (a.get(ia)<b.get(ib)) {
-        r.add(a.get(ia));
-        ia++;
+    while (a.size()>0 && b.size()>0) {
+      if (a.get(0)<b.get(0)) {
+        r.add(a.remove(0));
       } else {
-        r.add(b.get(ib));
-        ib++;
+        r.add(b.remove(0));
       }
     }
-    while (ib<b.size()) {
-      r.add(b.get(ib));
-      ib++;
+    while (a.size()>0) {
+      r.add(a.remove(0));
     }
-    while (ia<a.size()) {
-      r.add(a.get(ia));
-      ia++;
+    while (b.size()>0) {
+      r.add(b.remove(0));
     }
     return r;
   }
@@ -139,4 +133,6 @@ class Sorter {
   void qsort() {
     qsortHelp(toSort,0,toSort.size()-1);
   }
+  
+  
 }
