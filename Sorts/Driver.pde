@@ -7,6 +7,8 @@ Sorter s=new Sorter(15);
       //s.selectionSort();
       //s.insertionSort();
       println(s.toString());
+      System.out.println(s.results.toString());
+      println(s.toSort.toString());
     }
 
  

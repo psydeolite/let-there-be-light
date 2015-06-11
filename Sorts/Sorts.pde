@@ -1,6 +1,6 @@
 class Sorter {
   
-  ArrayList<Integer> toSort;
+  public ArrayList<Integer> toSort;
   
   public Sorter(int size) {
     toSort=new ArrayList<Integer>();
@@ -9,7 +9,7 @@ class Sorter {
     }
   }
   
-  ArrayList<String> results=new ArrayList<String>();
+  public ArrayList<String> results=new ArrayList<String>();
   
   void setup() {
     size(5000,5000);
@@ -40,9 +40,9 @@ class Sorter {
       }  
       int temp=toSort.get(minInd);
       toSort.set(minInd,toSort.get(i));
-      results.add(toString(toSort));
+      results.add(toSort.toString());
       toSort.set(i,temp);
-      results.add(toString(toSort));
+      results.add(toSort.toString());
     }
   }
       
@@ -53,10 +53,10 @@ class Sorter {
       int temp=toSort.get(i);
       for (j=i-1;j>=0 && temp<toSort.get(j);j--) {
         toSort.set(j+1,toSort.get(j));
-        results.add(toString(toSort));
+        results.add(toSort.toString());
       }
       toSort.set(j+1,temp);
-      results.add(toString(toSort));
+      results.add(toSort.toString());
     }
   }
   
@@ -78,8 +78,11 @@ class Sorter {
       for (int i=ar.size()/2;i<ar.size();i++) {
         c.add(ar.get(i)); 
       }
-      results.add(toString(merge(mergeSort(b),mergeSort(c))));
-      return merge(mergeSort(b),mergeSort(c));
+      mergeSort(b);
+      mergeSort(c);
+      results.add(b.toString()+c.toString());
+      //results.add(merge(mergeSort(b),mergeSort(c)).toString());
+      return merge(b,c);
     }
   }
   
@@ -113,17 +116,23 @@ class Sorter {
       } else {
         int tmp=a.get(li);
         a.set(li,a.get(hi));
+        results.add(toSort.toString());
         a.set(hi,tmp);
+        results.add(toSort.toString());
         hi--;
       }
     }
     if (a.get(li)<pval) {
       a.set(pi,a.get(li+1));
+      results.add(toSort.toString());
       a.set(li+1,pval);
+      results.add(toSort.toString());
       pi=li+1;
     } else {
       a.set(pi,a.get(li));
+      results.add(toSort.toString());
       a.set(li,pval);
+      results.add(toSort.toString());
       pi=li;
     }
     qsortHelp(a,pi+1,h);
