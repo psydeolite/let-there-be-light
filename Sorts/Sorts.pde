@@ -66,8 +66,8 @@ class Sorter {
     toSort=mergeSort(toSort);
   }
   
-  ArrayList<Integer> mergeSort(ArrayList<Integer> ar) {
-    if (ar.size()<=1) {
+  ArrayList<Integer> mergeSort(int lo, int hi) {
+    /*if (ar.size()<=1) {
       return ar;
     } else {
       ArrayList<Integer> b=new ArrayList<Integer>();
@@ -83,10 +83,13 @@ class Sorter {
       results.add(b.toString()+c.toString());
       //results.add(merge(mergeSort(b),mergeSort(c)).toString());
       return merge(b,c);
-    }
+    }*/
   }
   
-  ArrayList<Integer> merge(ArrayList<Integer> a,ArrayList<Integer> b) {
+ ArrayList<Integer> merge(int x1, int y1, int x2, int y2) {
+   
+ /* ArrayList<Integer> merge(ArrayList<Integer> a,ArrayList<Integer> b) {
+    
     ArrayList<Integer> r=new ArrayList<Integer>();
     while (a.size()>0 && b.size()>0) {
       if (a.get(0)<b.get(0)) {
@@ -101,7 +104,7 @@ class Sorter {
     while (b.size()>0) {
       r.add(b.remove(0));
     }
-    return r;
+    return r;*/
   }
   
   void qsortHelp(ArrayList<Integer> a,int l, int h) {
