@@ -30,6 +30,7 @@ class Sorter {
   
   void selectionSort() {
     clearResults();
+    results.add(toSort.toString());
     int minInd;
     for (int i=0; i<toSort.size();i++) {
       minInd=i;
@@ -40,7 +41,7 @@ class Sorter {
       }  
       int temp=toSort.get(minInd);
       toSort.set(minInd,toSort.get(i));
-      results.add(toSort.toString());
+      //results.add(toSort.toString());
       toSort.set(i,temp);
       results.add(toSort.toString());
     }
@@ -48,6 +49,7 @@ class Sorter {
       
   void insertionSort() {
     clearResults();
+    results.add(toSort.toString());
     int i,j;
     for (i=1;i<toSort.size();i++) {
       int temp=toSort.get(i);
@@ -61,14 +63,25 @@ class Sorter {
   }
   
   //needs work
-  void mergeSorter() {
+  /*void mergeSorter() {
     clearResults();
     toSort=mergeSort(toSort);
   }
   
-  ArrayList<Integer> mergeSort(int lo, int hi) {
-    /*if (ar.size()<=1) {
-      return ar;
+  /*void mergeSort(int lo, int hi) {
+    if (lo>=hi) {
+      merge(lo,hi);
+      return;
+    } else {
+      mergeSort(lo,hi/2);
+      mergeSort(hi/2,hi));
+    }
+  }
+  
+  void merge(int lo, int hi) {
+    
+    
+    /*
     } else {
       ArrayList<Integer> b=new ArrayList<Integer>();
       for (int i=0;i<ar.size()/2;i++) {
@@ -83,8 +96,7 @@ class Sorter {
       results.add(b.toString()+c.toString());
       //results.add(merge(mergeSort(b),mergeSort(c)).toString());
       return merge(b,c);
-    }*/
-  }
+    }
   
  ArrayList<Integer> merge(int x1, int y1, int x2, int y2) {
    
@@ -104,8 +116,8 @@ class Sorter {
     while (b.size()>0) {
       r.add(b.remove(0));
     }
-    return r;*/
-  }
+    return r;
+  }*/
   
   void qsortHelp(ArrayList<Integer> a,int l, int h) {
     if (l>=h) return;
@@ -143,6 +155,8 @@ class Sorter {
   }
   
   void qsort() {
+    clearResults();
+    results.add(toSort.toString());
     qsortHelp(toSort,0,toSort.size()-1);
   }
   
