@@ -18,6 +18,7 @@ class Sorter {
   
   void drawArray(ArrayList<Integer> toSort) {
     for (int i=0;i<toSort.size();i++) {
+      println(toSort.toString());
     fill(toSort.get(i));
     stroke(255);  
     ellipse(240,130+(i*30),20,20);
@@ -37,9 +38,9 @@ class Sorter {
   }
   
   void selectionSort(ArrayList<Integer> toSort) {
-    //clearResults();
-    //results.add(toSort.toString());
-    drawArray(toSort);
+    clearResults();
+    results.add(toSort.toString());
+    //drawArray(toSort);
     int minInd;
     for (int i=0; i<toSort.size();i++) {
       delay(100);
@@ -52,8 +53,12 @@ class Sorter {
       int temp=toSort.get(minInd);
       toSort.set(minInd,toSort.get(i));
       //results.add(toSort.toString());
+      //drawArray(toSort);
+      //delay(1000);
       toSort.set(i,temp);
+      delay(1000);
       drawArray(toSort);
+      //println(toSort.toString());
       //results.add(toSort.toString());
     }
   }
