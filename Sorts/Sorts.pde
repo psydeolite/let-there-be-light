@@ -1,12 +1,21 @@
+import java.util.*;
+import java.io.*;
 class Sorter {
-  
-  public ArrayList<Integer> toSort;
+  // Sorting algorthms
+  public ArrayList<Double> toSort;
   
   public Sorter(int size) {
-    toSort=new ArrayList<Integer>();
-    for (int i=0;i<size;i++) {
-      toSort.add((int) random(50)); //brightness
+    ArrayList<Double> a = new ArrayList<Double>(size);
+    for (int i = 0; i < size; i++)
+    {
+      a.add((double) i);
     }
+    toSort = new ArrayList<Double>(size);
+    for (int j = 0; j < size; j++)
+    {
+      toSort.add(a.remove((int) random(a.size())));
+    }
+    
   }
   
   public ArrayList<String> results=new ArrayList<String>();
@@ -15,13 +24,17 @@ class Sorter {
     size(5000,5000);
     background(0);
   }
+  String toString()
+  {
+    return this.toString(toSort);
+  }
   
-  String toString(int[] array) {
+  String toString(ArrayList<Double> array) {
     String s="";
-    for (int el:array) {
-      s+=el+",";
+    for (double el:array) {
+      s+= (int) el+":";
     }
-    return s;
+    return s.substring(0,s.length());
   }
   
   void clearResults() {
@@ -30,7 +43,7 @@ class Sorter {
   
   void selectionSort() {
     clearResults();
-    results.add(toSort.toString());
+    results.add(this.toString(toSort));
     int minInd;
     for (int i=0; i<toSort.size();i++) {
       minInd=i;
@@ -39,26 +52,25 @@ class Sorter {
           minInd=j;
         }
       }  
-      int temp=toSort.get(minInd);
+      double temp=toSort.get(minInd);
       toSort.set(minInd,toSort.get(i));
-      //results.add(toSort.toString());
+      //results.add(this.toString(toSort));
       toSort.set(i,temp);
-      results.add(toSort.toString());
+      results.add(this.toString(toSort));
     }
   }
       
   void insertionSort() {
     clearResults();
-    results.add(toSort.toString());
+    results.add(this.toString(toSort));
     int i,j;
     for (i=1;i<toSort.size();i++) {
-      int temp=toSort.get(i);
+      double temp=toSort.get(i);
       for (j=i-1;j>=0 && temp<toSort.get(j);j--) {
         toSort.set(j+1,toSort.get(j));
-        results.add(toSort.toString());
       }
       toSort.set(j+1,temp);
-      results.add(toSort.toString());
+      results.add(this.toString(toSort));
     }
   }
   
@@ -119,35 +131,35 @@ class Sorter {
     return r;
   }*/
   
-  void qsortHelp(ArrayList<Integer> a,int l, int h) {
+  void qsortHelp(ArrayList<Double> a,int l, int h) {
     if (l>=h) return;
     int pi=h;
-    int pval=a.get(h);
+    double pval=a.get(h);
     int hi=h-1;
     int li=l;
     while (li<hi) {
       if (a.get(li)<=pval) {
         li++;
       } else {
-        int tmp=a.get(li);
+        double tmp=a.get(li);
         a.set(li,a.get(hi));
-        results.add(toSort.toString());
+        results.add(this.toString(toSort));
         a.set(hi,tmp);
-        results.add(toSort.toString());
+        results.add(this.toString(toSort));
         hi--;
       }
     }
     if (a.get(li)<pval) {
       a.set(pi,a.get(li+1));
-      results.add(toSort.toString());
+      results.add(this.toString(toSort));
       a.set(li+1,pval);
-      results.add(toSort.toString());
+      results.add(this.toString(toSort));
       pi=li+1;
     } else {
       a.set(pi,a.get(li));
-      results.add(toSort.toString());
+      results.add(this.toString(toSort));
       a.set(li,pval);
-      results.add(toSort.toString());
+      results.add(this.toString(toSort));
       pi=li;
     }
     qsortHelp(a,pi+1,h);
@@ -156,7 +168,7 @@ class Sorter {
   
   void qsort() {
     clearResults();
-    results.add(toSort.toString());
+    results.add(this.toString(toSort));
     qsortHelp(toSort,0,toSort.size()-1);
   }
   
