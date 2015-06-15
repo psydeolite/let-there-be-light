@@ -1,24 +1,30 @@
+import java.util.*;
+import java.io.*;
 int[] ar;
 int sy1=30; int sy2=100; 
 int iy1=120; int iy2=190;
 int qy1=210; int qy2=280;
 int ax1=30; int ax2=130;
+
+int bx1=330; int bx2=430;
+int by1=30; int by2=100;
 void setup() {
   size(480,420);
   background(255);
   drawTie();
   drawButtons();
   ar=new int[8];
+  /*ArrayList<Integer> colors=new ArrayList<Integer>(
+    Arrays.asList(30,60,90,120,150,180,210,240));
+  println(colors.toString());
   for (int i=0;i<8;i++) {
-    
-    int r=(int) (Math.pow(3,int(random(2))+4));
-    println(r);
-    ar[i]=r;
-  }
+    ar[i]=colors.remove(int(random(colors.size())));
+  }*/
+  shuffle();
 }
 
 void drawTie() {
-  fill(255,0,0);
+  fill(0);
   beginShape();
   vertex(220,30);
   vertex(260,30);
@@ -52,8 +58,22 @@ void drawButtons() {
   textSize(16);
   fill(0);
   text("quick",40,250);
+  
+  fill(200);
+  rect(bx1,by1,bx2,by2);
+  textSize(16);
+  fill(0);
+  text("reshuffle",340,70);
 }
 
+void shuffle() {
+  ArrayList<Integer> colors=new ArrayList<Integer>(
+    Arrays.asList(30,60,90,120,150,180,210,240));
+  println(colors.toString());
+  for (int i=0;i<8;i++) {
+    ar[i]=colors.remove(int(random(colors.size())));
+  }
+}
 void draw() {
   background(255);
   drawTie();
@@ -69,6 +89,9 @@ void draw() {
     } else if (mouseX>ax1 && mouseX<ax2 && mouseY>qy1 && mouseY<qy2) {
       println("quick");
       thread("qsort");
+    } else if (mouseX>bx1 && mouseX<bx2 && mouseY>by1 && mouseY<by2) {
+      println("shuffle");
+      thread("shuffle");
     } else {
       println("nothing");
     }
@@ -77,7 +100,8 @@ void draw() {
   
 void drawArray() {
   for (int i=0;i<ar.length;i++) {
-    fill(ar[i]);
+    fill(255,0,0,ar[i]);
+    //fill(ar[i]);
     stroke(255);
     ellipse(240,130+(i*30),20,20);
   }
