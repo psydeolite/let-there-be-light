@@ -14,12 +14,6 @@ void setup() {
   drawTie();
   drawButtons();
   ar=new int[8];
-  /*ArrayList<Integer> colors=new ArrayList<Integer>(
-    Arrays.asList(30,60,90,120,150,180,210,240));
-  println(colors.toString());
-  for (int i=0;i<8;i++) {
-    ar[i]=colors.remove(int(random(colors.size())));
-  }*/
   shuffle();
 }
 
